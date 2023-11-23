@@ -1,0 +1,49 @@
+
+<%= render 'shared/navbar' %>
+<h1 style = "text-align:center">Courses Available</h1>
+
+<div class="row">
+  <% @courses.each do |course| %>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title"><%= course.title %></h2>
+          <p class="card-text"><%= course.description %></p>
+          <p class="card-text"><strong>Price:</strong> <%= number_to_currency(course.price) %></p>
+          
+
+          <% if course.video.attached? %>
+            <video class="card-img-top" width="320" height="240" controls>
+              <source src="<%= url_for(course.video) %>" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          <% else %>
+            <p class="card-text">No video available for this course.</p>
+          <% end %>
+        </div>
+
+        <%= form_tag course_payment_path, method: 'post' do %>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="pk_test_51OFcYISJZ1V84998Xv9GExYdIVk1cpXFYiSDaaFSXmDMG5vbAcXihmKlCGCx7gDW6mQpRib24qrNRNEUWPlr6UhB00ImETLIjp"
+            data-description="<%= course.description %>"
+            data-amount="<%= course.price * 100 %>"
+            data-locale="auto"
+            data-currency="inr">
+          </script>
+        <% end %>
+      </div>
+
+      
+    </div>
+
+
+    
+
+
+  <% end %>
+</div>
+
+
+
+
