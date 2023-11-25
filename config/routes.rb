@@ -24,7 +24,14 @@ Rails.application.routes.draw do
 
 
   get '/index2', to:'home#index2'
-  get '/courses', to: 'course#index'
+  get '/course', to: 'course#index', as: 'course'
 
   post '/course/payment', to: 'payments#create'
+
+  resources :courses, as: 'courses' do
+    member do
+      get 'enroll'
+      post 'enroll'
+    end
+  end
 end

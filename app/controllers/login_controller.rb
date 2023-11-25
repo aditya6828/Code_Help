@@ -75,8 +75,11 @@ class LoginController < ApplicationController
     end 
     
     def user_detail
-      @current_user = @current_user
+      @current_user = User.find(session[:user]["id"])
+      # Assuming you have a UserCourse model that links users to courses
+      @enrolled_courses = @current_user.courses
     end
+    
 
 
 
