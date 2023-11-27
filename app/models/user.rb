@@ -7,4 +7,5 @@ class User < ApplicationRecord
     has_many :courses, through: :user_courses
     belongs_to :user
     belongs_to :course
+    has_many :reviews
 end

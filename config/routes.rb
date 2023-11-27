@@ -28,10 +28,13 @@ Rails.application.routes.draw do
 
   post '/course/payment', to: 'payments#create'
 
-  resources :courses, as: 'courses' do
+  post 'create', to: 'course#create'
+  resources :course, as: 'courses' do
     member do
-      get 'enroll'
+      
       post 'enroll'
+      get 'review' 
+      post 'submit_review'
     end
   end
 end

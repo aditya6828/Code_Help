@@ -1,6 +1,8 @@
 class LoginController < ApplicationController
 
   before_action :current_user, only: [:user_detail]
+  
+
 
     def login
         

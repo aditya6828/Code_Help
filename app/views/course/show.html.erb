@@ -1,0 +1,6 @@
+<% @course.reviews.each do |review| %>
+    <p><strong>Rating:</strong> <%= review.rating %></p>
+    <p><strong>Review:</strong> <%= review.comment %></p>
+    <hr>
+  <% end %>
+  
